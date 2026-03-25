@@ -11,7 +11,7 @@ export const timedEvents: readonly TimedEvent[] = [
     name: "Hearts and Horses",
     eventType: EventType.SHINY,
     startDate: new Date(Date.UTC(2026, 1, 13)),
-    endDate: new Date(Date.UTC(2026, 2, 3)),
+    endDate: new Date(Date.UTC(2026, 11, 3)),
     bannerKey: "hearts_and_horses-event",
     scale: 0.19,
     availableLangs: ["en", "de", "it", "fr", "ja", "ko", "es-ES", "es-419", "pt-BR", "zh-Hans", "zh-Hant", "da", "ru"],
