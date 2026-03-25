@@ -29,8 +29,8 @@ enum MenuOptions {
   POKEDEX,
   MANAGE_DATA,
   COMMUNITY,
-  SAVE_AND_QUIT,
   LOG_OUT,
+  SAVE_AND_QUIT,
 }
 
 let wikiUrl = "https://wiki.pokerogue.net/start";
