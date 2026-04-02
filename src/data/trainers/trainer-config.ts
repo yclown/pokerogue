@@ -1,4 +1,5 @@
 import { getRandomRivalPartyMemberFunc } from "#app/ai/rival-team-gen";
+import { timedEventManager } from "#app/global-event-manager";
 import { globalScene } from "#app/global-scene";
 import { signatureSpecies } from "#balance/signature-species";
 import { tmSpecies } from "#balance/tm-species-map";
@@ -131,8 +132,19 @@ export class TrainerConfig {
   public title: string;
   public titleDouble: string;
   public hasGenders = false;
+  /**
+   * Whether this trainer has a **random** chance to appear as a double battle variant instead of a single battle variant.
+   * @remarks
+   * Mutually exclusive with `doubleOnly`.
+   */
+  // TODO: Enforce mutual exclusivity
   public hasDouble = false;
   public hasCharSprite = false;
+  /**
+   * Whether this trainer can **only** appear inside a double battle.
+   * @remarks
+   * Mutually exclusive with `hasDouble`.
+   */
   public doubleOnly = false;
   public moneyMultiplier = 1;
   public isBoss = false;
@@ -204,6 +216,12 @@ export class TrainerConfig {
       // Get the derived type for the double trainer since the sprite key is based on the derived type
       ret = TrainerType[this.getDerivedType(this.trainerTypeDouble)].toString().toLowerCase();
     }
+
+    const replacement = timedEventManager.getEventTrainerSpriteReplacement(this.trainerType);
+    if (replacement) {
+      ret = replacement;
+    }
+
     return ret;
   }
 
